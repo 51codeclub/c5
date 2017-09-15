@@ -1,0 +1,27 @@
+chown root.root filename
+chown root:root filename
+
+chgrp root filename
+
+chmod u g o a  
+      + - =
+      r w x
+
+chmod 755 filename
+
+ln    src_file link_file
+ln -s src_file link_file
+
+zip dest_file.zip src_file
+unzip xxx.zip
+
+tar -cvf dest_file.tar src_file
+tar -xvf xxx.tar
+
+//gzip
+tar -zcvf dest_file.tar.gz src_file
+tar -zxvf xxx.tar.gz
+
+//bzip2
+tar -jcvf dest_file.tar.bz2 src_file
+tar -jxvf xxx.tar.bz2

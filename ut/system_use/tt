@@ -1,0 +1,8 @@
+hello
+
+#include<iostream>
+int main()
+{
+    printf("Hello Linux.\n");
+    return 0;
+}
