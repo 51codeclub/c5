@@ -1,0 +1,20 @@
+# install ftp
+  yum install vsftpd -y   //server
+  yum install lftp -y     //client
+
+# root direction
+  /var/ftp/pub
+  /etc/vsftpd/vsftpd.conf
+
+# use ftp
+  lftp 192.168.1.50
+  get file_name
+  mget
+  mirror dir_name
+  !ls
+  lpwd
+  lcd
+  ls pwd cd 
+  put file_name
+  mput 
+  mirror -R dir_name

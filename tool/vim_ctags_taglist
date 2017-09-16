@@ -1,0 +1,10 @@
+# install vim
+  yum install vim -y
+
+# install ctags
+  tar -zxvf ctags-5.8.tar.gz
+  cd ctags-5.8
+
+  ./configure --prefix=/usr/local
+  make
+  make install

@@ -1,0 +1,10 @@
+# install httpd
+  yum install httpd -y
+
+# root direction
+  /var/www/
+  /etc/httpd/cond/httpd.conf
+
+# start httpd
+  systemctl start|restart|stop|status httpd
+  
