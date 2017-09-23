@@ -9,4 +9,7 @@
 
 #include<stdio.h>
 
+
+typedef unsigned long ulong;
+
 #endif // _UTILI_H
