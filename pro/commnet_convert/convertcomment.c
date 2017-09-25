@@ -60,6 +60,7 @@ void eventpro(char ch)
         eventpro_no(ch);
         break;
     case c_comment_state:
+        eventpro_c(ch);
         break;
     case cpp_comment_state:
         eventpro_cpp(ch);
@@ -80,17 +81,14 @@ void eventpro_no(char ch)
             fputc('*', g_state.output);
             g_state.ulstate = cpp_comment_state;
         }
+        else if(nextch == '*')
+        {
+            fputc('/', g_state.output);
+            fputc('*', g_state.output);
+            g_state.ulstate = c_comment_state;
+        }
         break;
-    }
-}
-
-void eventpro_cpp(char ch)
-{
-    switch(ch)
-    {
     case EOF:
-        fputc('*', g_state.output);
-        fputc('/', g_state.output);
         g_state.ulstate = end_state;
         break;
     default:
@@ -99,7 +97,86 @@ void eventpro_cpp(char ch)
     }
 }
 
+void eventpro_cpp(char ch)
+{
+    char nextch;
+    char thirdch;
+    switch(ch)
+    {
+    case EOF:
+        fputc('*', g_state.output);
+        fputc('/', g_state.output);
+        g_state.ulstate = end_state;
+        break;
+    case '\n':
+        fputc('*', g_state.output);
+        fputc('/', g_state.output);
+        g_state.ulstate = no_comment_state;
+        fputc('\n', g_state.output);
+        break;
+    case '/':
+        nextch = fgetc(g_state.input);
+        
+        if(nextch=='/' || nextch=='*')   //123 //456  or //123 /*456
+        {
+            if(nextch == '/')
+            {
+                thirdch = fgetc(g_state.input);
+                if(thirdch == '/')
+                {
+                    while((thirdch=fgetc(g_state.input)) == '/');
+                    fputc(thirdch, g_state.output);
+                }
+                else
+                {
+                    fputc(' ', g_state.output);
+                    fputc(' ', g_state.output);
+                    fseek(g_state.input,-1, SEEK_CUR);
+                }
+            }
+        }
+        break;
+    case '*':
+        nextch = fgetc(g_state.input);
+        if(nextch == '/')   // 123 */
+        {
+            fputc(' ', g_state.output);
+            fputc(' ', g_state.output);
+        }
+        break;
+    default:
+        fputc(ch, g_state.output);
+        break;
+    }
+}
 
+void eventpro_c(char ch)
+{
+    char nextch;
+    switch(ch)
+    {
+    case '*':
+        nextch = fgetc(g_state.input);
+        if(nextch == '/')    /*  123456 */
+        {
+            fputc('*', g_state.output);
+            fputc('/', g_state.output);
+            g_state.ulstate = no_comment_state;
+        }
+        break;
+    case '/':
+        nextch = fgetc(g_state.input);
+        if(nextch == '/')   //  /*123 //456 */
+        {
+            fputc(' ', g_state.output);
+            fputc(' ', g_state.output);
+        }
+        break;
+    default:
+        fputc(ch, g_state.output);
+        break;
+    }
+}
 
 
 
