@@ -9,26 +9,17 @@
 #include "utili.h"
 #include "convertcomment.h"
 
+// ./cct -s /home/xxx -d /home/xxxx
+
 int main(int argc, char *argv[])
 {
-    FILE *fpin = fopen("./src_file/input.c", "r");
-    if(NULL == fpin)
-    {
-        printf("open input.c fail.\n");
-        return -1;
-    }
-    FILE *fpout = fopen("./dest_file/output.c", "w");
-    if(NULL == fpout)
-    {
-        printf("open output.c fail.\n");
-        return -1;
-    }
+    FILE *fpin = open_file("./src_file/input.c", "r");
+    FILE *fpout = open_file("./dest_file/output.c", "w");
 
     convertcomment(fpin, fpout);
 
-    fclose(fpin);
-    fclose(fpout);
-
+    close_file(fpin);
+    close_file(fpout);
     printf("Commnet Convert Completion.......\n");
     return 0;
 }

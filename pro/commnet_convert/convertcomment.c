@@ -14,6 +14,7 @@ typedef enum
     no_comment_state,
     c_comment_state,
     cpp_comment_state,
+    str_state,
     end_state
 }enum_state;
 
@@ -27,6 +28,39 @@ typedef struct
 
 //定义全局状态机
 state_machine g_state;
+
+/////////////////////////////////////////////////////////
+FILE* open_file(char *file, char *mode)
+{
+    FILE *fp = fopen(file, mode);
+    if(NULL == fp)
+    {
+        printf("open %s fail.\n",file);
+        exit(1);
+    }
+    return fp;
+}
+void close_file(FILE *fp)
+{
+    assert(fp != NULL);
+    fclose(fp);
+}
+char read_ch(FILE *fp)
+{
+    return fgetc(fp);
+}
+void write_ch(char ch, FILE *fp)
+{
+    fputc(ch, fp);
+}
+void write_double_ch(char ch1, char ch2, FILE *fp)
+{
+    fputc(ch1, fp);
+    fputc(ch2, fp);
+}
+
+/////////////////////////////////////////////////////////
+
 
 int convertcomment(FILE *inputfile, FILE *outputfile)
 {
@@ -65,6 +99,9 @@ void eventpro(char ch)
     case cpp_comment_state:
         eventpro_cpp(ch);
         break;
+    case str_state:
+        eventpro_str(ch);
+        break;
     }
 }
 
@@ -77,8 +114,9 @@ void eventpro_no(char ch)
         nextch = fgetc(g_state.input);
         if(nextch == '/')   //C++
         {
-            fputc('/', g_state.output);
-            fputc('*', g_state.output);
+            //fputc('/', g_state.output);
+            //fputc('*', g_state.output);
+            write_double_ch('/','*', g_state.output);
             g_state.ulstate = cpp_comment_state;
         }
         else if(nextch == '*')
@@ -178,7 +216,10 @@ void eventpro_c(char ch)
     }
 }
 
-
+void eventpro_str(char ch)
+{
+    //
+}
 
 
 

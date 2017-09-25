@@ -8,8 +8,10 @@
 **********************************************************/
 
 #include<stdio.h>
-
+#include<stdlib.h>
+#include<assert.h>
 
 typedef unsigned long ulong;
+
 
 #endif // _UTILI_H
