@@ -28,3 +28,9 @@
 //////////////////////////////////////hello Linux
 
 char *str = "hello //comment convert.";
+char *str = "hello /* comment */ convert.";
+
+/*abc**/
+//abc"xy//z"
+
+//abc"xy*/z"

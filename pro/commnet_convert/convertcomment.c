@@ -24,6 +24,7 @@ typedef struct
     FILE *input;
     FILE *output;
     enum_state ulstate;
+	enum_state laststate;
 }state_machine;
 
 //定义全局状态机
@@ -75,6 +76,7 @@ int convertcomment(FILE *inputfile, FILE *outputfile)
     g_state.input = inputfile;
     g_state.output = outputfile;
     g_state.ulstate = no_comment_state;
+	g_state.laststate = no_comment_state;
 
     char ch;
     while(g_state.ulstate != end_state)
@@ -126,6 +128,11 @@ void eventpro_no(char ch)
             g_state.ulstate = c_comment_state;
         }
         break;
+	case '"':
+		fputc('"', g_state.output);
+		g_state.laststate = no_comment_state;
+		g_state.ulstate = str_state;
+		break;
     case EOF:
         g_state.ulstate = end_state;
         break;
@@ -182,6 +189,11 @@ void eventpro_cpp(char ch)
             fputc(' ', g_state.output);
         }
         break;
+	case '"':
+		fputc('"', g_state.output);
+		g_state.ulstate = str_state;
+		g_state.laststate = cpp_comment_state;
+		break;
     default:
         fputc(ch, g_state.output);
         break;
@@ -201,8 +213,13 @@ void eventpro_c(char ch)
             fputc('/', g_state.output);
             g_state.ulstate = no_comment_state;
         }
+		else
+		{
+			fputc('*', g_state.output);
+			fseek(g_state.input,-1,SEEK_CUR);
+		}
         break;
-    case '/':
+   case '/':
         nextch = fgetc(g_state.input);
         if(nextch == '/')   //  /*123 //456 */
         {
@@ -210,6 +227,11 @@ void eventpro_c(char ch)
             fputc(' ', g_state.output);
         }
         break;
+	case '"':
+		fputc('"', g_state.output);
+		g_state.ulstate = str_state;
+		g_state.laststate = c_comment_state;
+		break;
     default:
         fputc(ch, g_state.output);
         break;
@@ -218,7 +240,48 @@ void eventpro_c(char ch)
 
 void eventpro_str(char ch)
 {
-    //
+	char nextch;
+    switch(ch)
+	{
+		case '"':
+			fputc('"', g_state.output);
+			g_state.ulstate = g_state.laststate;
+			break;
+		case '/':
+			nextch = fgetc(g_state.input);
+			if(nextch == '/')
+			{
+				fputc(' ', g_state.output);
+				fputc(' ', g_state.output);
+			}
+			else if(nextch == '*')
+			{
+				fputc(' ', g_state.output);
+				fputc(' ', g_state.output);
+			}
+			else
+			{
+				fputc(ch, g_state.output);
+				fputc(nextch ,g_state.output);
+			}
+			break;
+		case '*':
+			nextch = fgetc(g_state.input);
+			if(nextch == '/')
+			{
+				fputc(' ', g_state.output);
+				fputc(' ', g_state.output);
+			}
+			else
+			{
+				fputc(ch, g_state.output);
+				fputc(nextch, g_state.output);
+			}
+			break;
+		default :
+			fputc(ch, g_state.output);
+			break;
+	}
 }
 
 
