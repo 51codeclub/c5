@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+_CONVERTCOMMENT_H	convertcomment.h	2;"	d
+_UTILI_H	utili.h	2;"	d
+c_comment_state	convertcomment.c	/^    c_comment_state,$/;"	e	enum:__anon1	file:
+close_file	convertcomment.c	/^void close_file(FILE *fp)$/;"	f
+convertcomment	convertcomment.c	/^int convertcomment(FILE *inputfile, FILE *outputfile)$/;"	f
+cpp_comment_state	convertcomment.c	/^    cpp_comment_state,    $/;"	e	enum:__anon1	file:
+end_state	convertcomment.c	/^    end_state $/;"	e	enum:__anon1	file:
+enum_state	convertcomment.c	/^}enum_state; \/\/定义状态机$/;"	t	typeref:enum:__anon1	file:
+eventpro	convertcomment.c	/^void eventpro(char ch)$/;"	f
+eventpro_c	convertcomment.c	/^void eventpro_c(char ch)$/;"	f
+eventpro_cpp	convertcomment.c	/^void eventpro_cpp(char ch)$/;"	f
+eventpro_no	convertcomment.c	/^void eventpro_no(char ch)$/;"	f
+eventpro_str	convertcomment.c	/^void eventpro_str(char ch)$/;"	f
+g_pre_state	convertcomment.c	/^static enum_state g_pre_state;$/;"	v	file:
+g_state	convertcomment.c	/^state_machine g_state;$/;"	v
+i	test/input.c	/^     *\/int i =0;                             $/;"	v
+input	convertcomment.c	/^    FILE *input;$/;"	m	struct:__anon2	file:
+j	dest_file/output.c	/^    *\/int j = 0; $/;"	v
+j	test/input.c	/^  \/\/*\/int j = 0;              $/;"	v
+main	convert.c	/^int main(int argc, char *argv[])$/;"	f
+no_comment_state	convertcomment.c	/^    no_comment_state,$/;"	e	enum:__anon1	file:
+open_file	convertcomment.c	/^FILE* open_file(char *file, char *mode)$/;"	f
+output	convertcomment.c	/^    FILE *output;$/;"	m	struct:__anon2	file:
+read_ch	convertcomment.c	/^char read_ch(FILE *fp)$/;"	f
+state_machine	convertcomment.c	/^}state_machine;$/;"	t	typeref:struct:__anon2	file:
+str	dest_file/output.c	/^char *str = "hello    comment    convert.";$/;"	v
+str	dest_file/output.c	/^char *str = "hello   comment convert.";$/;"	v
+str	src_file/input.c	/^char *str = "hello \/\/comment convert.";$/;"	v
+str	test/input.c	/^char *str = "hello \/\/comment convert.";$/;"	v
+str1	test/input.c	/^char *str1 = "hello \/* comment *\/ convert.";$/;"	v
+str_state	convertcomment.c	/^    str_state, $/;"	e	enum:__anon1	file:
+ulong	utili.h	/^typedef unsigned long ulong;$/;"	t
+ulstate	convertcomment.c	/^    enum_state ulstate;$/;"	m	struct:__anon2	file:
+write_ch	convertcomment.c	/^void write_ch(char ch, FILE *fp)$/;"	f
+write_double_ch	convertcomment.c	/^void write_double_ch(char ch1, char ch2, FILE *fp)$/;"	f

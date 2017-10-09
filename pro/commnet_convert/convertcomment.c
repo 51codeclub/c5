@@ -13,23 +13,22 @@ typedef enum
 {
     no_comment_state,
     c_comment_state,
-    cpp_comment_state,
-    str_state,
-    end_state
-}enum_state;
+    cpp_comment_state,    
+    str_state, 
+    end_state 
+}enum_state; //定义状态机
 
-//定义状态机
 typedef struct
 {
     FILE *input;
     FILE *output;
     enum_state ulstate;
-	enum_state laststate;
+	//enum_state laststate;
 }state_machine;
 
 //定义全局状态机
 state_machine g_state;
-
+static enum_state g_pre_state;
 /////////////////////////////////////////////////////////
 FILE* open_file(char *file, char *mode)
 {
@@ -76,7 +75,6 @@ int convertcomment(FILE *inputfile, FILE *outputfile)
     g_state.input = inputfile;
     g_state.output = outputfile;
     g_state.ulstate = no_comment_state;
-	g_state.laststate = no_comment_state;
 
     char ch;
     while(g_state.ulstate != end_state)
@@ -106,7 +104,6 @@ void eventpro(char ch)
         break;
     }
 }
-
 void eventpro_no(char ch)
 {
     char nextch;
@@ -130,7 +127,6 @@ void eventpro_no(char ch)
         break;
 	case '"':
 		fputc('"', g_state.output);
-		g_state.laststate = no_comment_state;
 		g_state.ulstate = str_state;
 		break;
     case EOF:
@@ -192,7 +188,7 @@ void eventpro_cpp(char ch)
 	case '"':
 		fputc('"', g_state.output);
 		g_state.ulstate = str_state;
-		g_state.laststate = cpp_comment_state;
+		g_pre_state = cpp_comment_state;
 		break;
     default:
         fputc(ch, g_state.output);
@@ -230,7 +226,7 @@ void eventpro_c(char ch)
 	case '"':
 		fputc('"', g_state.output);
 		g_state.ulstate = str_state;
-		g_state.laststate = c_comment_state;
+		g_pre_state = c_comment_state;
 		break;
     default:
         fputc(ch, g_state.output);
@@ -245,16 +241,11 @@ void eventpro_str(char ch)
 	{
 		case '"':
 			fputc('"', g_state.output);
-			g_state.ulstate = g_state.laststate;
+			g_state.ulstate = g_pre_state;
 			break;
 		case '/':
 			nextch = fgetc(g_state.input);
-			if(nextch == '/')
-			{
-				fputc(' ', g_state.output);
-				fputc(' ', g_state.output);
-			}
-			else if(nextch == '*')
+			if(nextch == '*')
 			{
 				fputc(' ', g_state.output);
 				fputc(' ', g_state.output);
