@@ -6,6 +6,7 @@
 *    > Created Time: 2017年09月23日 星期六 09时55分30秒
 **********************************************************/
 
+#include"log.h"
 #include "convertcomment.h"
 
 //定义状态
@@ -35,7 +36,8 @@ FILE* open_file(char *file, char *mode)
     FILE *fp = fopen(file, mode);
     if(NULL == fp)
     {
-        printf("open %s fail.\n",file);
+        //printf("open %s fail.\n",file);
+        sys_log(LOG_ERR, __FILE__, __LINE__, "Open %s fail.\n",file);
         exit(1);
     }
     return fp;

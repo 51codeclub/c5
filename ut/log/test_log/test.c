@@ -12,10 +12,13 @@
 
 int main()
 {
+    set_loglevel(LOG_DEBUG);
+    sys_log(LOG_INFO, __FILE__, __LINE__, "Test log Level.\n");
+    //sys_log(LOG_INFO, "Test log level.%s\n","hjlfalla");
     FILE *fp = fopen("test.txt","r");
     if(fp == NULL)
     {
-        sys_log(LOG_ERR, __FILE__, __LINE__, "open test.txt file fail.");
+        sys_log(LOG_ERR, __FILE__, __LINE__, "open %s file fail.","test.txt");
         return -1;
     }
     fclose(fp);

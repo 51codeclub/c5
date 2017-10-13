@@ -10,7 +10,19 @@
 #include<unistd.h>
 #include<syslog.h>
 #include<errno.h>
+#include<fcntl.h>
+int main()
+{
+    int fd = open("a.txt", O_WRONLY|O_CREAT, 0755);
 
+    close(1);
+    dup(fd);
+
+    printf("Hello Liuna.\n");
+    return 0;
+}
+
+/*
 //printf
 
 int main()

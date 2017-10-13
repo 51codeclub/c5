@@ -1,0 +1,6 @@
+ [10/13/17 14:30:39 ] test.c:0016 <LOG_INFO> Test log Level.
+
+ [10/13/17 14:30:39 ] test.c:0021 <LOG_ERR> open test.txt file fail.
+ [10/13/17 14:30:57 ] test.c:0016 <LOG_INFO> Test log Level.
+
+ [10/13/17 14:30:57 ] test.c:0021 <LOG_ERR> open test.txt file fail.
