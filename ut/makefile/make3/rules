@@ -1,0 +1,1290 @@
+# GNU Make 3.82
+# Built for x86_64-redhat-linux-gnu
+# Copyright (C) 2010  Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+cc    -c -o test.o test.c
+cc    -c -o max.o max.c
+cc    -c -o min.o min.c
+gcc -o test test.o max.o min.o
+
+# make 数据基础，打印在 Sat Oct 14 09:57:24 2017
+
+# 变量
+
+# 自动
+<D = $(patsubst %/,%,$(dir $<))
+# 自动
+?F = $(notdir $?)
+# 默认
+.SHELLFLAGS := -c
+# 默认
+CWEAVE = cweave
+# 自动
+?D = $(patsubst %/,%,$(dir $?))
+# 自动
+@D = $(patsubst %/,%,$(dir $@))
+# 自动
+@F = $(notdir $@)
+# 默认
+MAKE_VERSION := 3.82
+# makefile
+CURDIR := /home/51cc/2017/c5/ut/makefile/make2
+# makefile
+SHELL = /bin/sh
+# 默认
+RM = rm -f
+# 默认
+CO = co
+# 默认
+COMPILE.mod = $(M2C) $(M2FLAGS) $(MODFLAGS) $(TARGET_ARCH)
+# 环境
+_ = /usr/bin/make
+# 默认
+PREPROCESS.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -F
+# 默认
+LINK.m = $(OBJC) $(OBJCFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+LINK.o = $(CC) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+OUTPUT_OPTION = -o $@
+# 默认
+COMPILE.cpp = $(COMPILE.cc)
+# makefile (从“Makefile”，行 1)
+MAKEFILE_LIST :=  Makefile
+# 环境
+HISTCONTROL = ignoredups
+# 默认
+LINK.p = $(PC) $(PFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+CC = cc
+# 环境
+QT_PLUGIN_PATH = /usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+# 默认
+CHECKOUT,v = +$(if $(wildcard $@),,$(CO) $(COFLAGS) $< $@)
+# 环境
+LESSOPEN = ||/usr/bin/lesspipe.sh %s
+# 默认
+CPP = $(CC) -E
+# 默认
+LINK.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 环境
+SSH_CONNECTION = 192.168.1.51 47953 192.168.1.50 22
+# 环境
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+# 默认
+LD = ld
+# 默认
+TEXI2DVI = texi2dvi
+# 环境
+QT_GRAPHICSSYSTEM_CHECKED = 1
+# 环境
+SSH_TTY = /dev/pts/11
+# 环境
+XDG_RUNTIME_DIR = /run/user/0
+# 默认
+ARFLAGS = rv
+# 默认
+LINK.r = $(FC) $(FFLAGS) $(RFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+LINT = lint
+# 默认
+COMPILE.f = $(FC) $(FFLAGS) $(TARGET_ARCH) -c
+# 默认
+LINT.c = $(LINT) $(LINTFLAGS) $(CPPFLAGS) $(TARGET_ARCH)
+# 默认
+YACC.m = $(YACC) $(YFLAGS)
+# 默认
+YACC.y = $(YACC) $(YFLAGS)
+# 默认
+AR = ar
+# 环境
+SELINUX_USE_CURRENT_RANGE = 
+# 默认
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver check-symlink
+# 默认
+TANGLE = tangle
+# 环境
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+# 默认
+GET = get
+# 自动
+%F = $(notdir $%)
+# 环境
+KDEDIRS = /usr
+# 默认
+COMPILE.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# 默认
+CTANGLE = ctangle
+# 默认
+.LIBPATTERNS = lib%.so lib%.a
+# 默认
+LINK.C = $(LINK.cc)
+# 环境
+PWD = /home/51cc/2017/c5/ut/makefile/make2
+# 默认
+LINK.S = $(CC) $(ASFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_MACH)
+# 默认
+PREPROCESS.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -F
+# 自动
+*D = $(patsubst %/,%,$(dir $*))
+# 默认
+LINK.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+LINK.s = $(CC) $(ASFLAGS) $(LDFLAGS) $(TARGET_MACH)
+# 环境
+HOME = /root
+# 环境
+LOGNAME = root
+# 环境
+SELINUX_LEVEL_REQUESTED = 
+# 自动
+^D = $(patsubst %/,%,$(dir $^))
+# 环境
+HOSTNAME = localhost.localdomain
+# 默认
+YACC = yacc
+# 环境
+MAKELEVEL := 0
+# 默认
+COMPILE.m = $(OBJC) $(OBJCFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# 默认
+MAKE = $(MAKE_COMMAND)
+# 环境
+SHLVL = 1
+# 默认
+AS = as
+# 默认
+PREPROCESS.S = $(CC) -E $(CPPFLAGS)
+# 默认
+COMPILE.p = $(PC) $(PFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# 环境
+XDG_SESSION_ID = 703
+# 环境
+USER = root
+# 默认
+FC = f77
+# makefile
+.DEFAULT_GOAL := test
+# 自动
+%D = $(patsubst %/,%,$(dir $%))
+# 默认
+WEAVE = weave
+# 默认
+MAKE_COMMAND := make
+# 默认
+LINK.cpp = $(LINK.cc)
+# 默认
+F77 = $(FC)
+# 环境
+OLDPWD = /home/51cc/2017/c5/ut/makefile
+# 默认
+.VARIABLES := 
+# 默认
+PC = pc
+# 自动
+*F = $(notdir $*)
+# 环境
+LANGUAGE = zh_CN:zh
+# 默认
+COMPILE.def = $(M2C) $(M2FLAGS) $(DEFFLAGS) $(TARGET_ARCH)
+# 默认
+LEX = lex
+# makefile
+MAKEFLAGS = p
+# 环境
+MFLAGS = -p
+# 环境
+SSH_CLIENT = 192.168.1.51 47953 22
+# 环境
+MAIL = /var/spool/mail/root
+# 默认
+LEX.l = $(LEX) $(LFLAGS) -t
+# 默认
+LEX.m = $(LEX) $(LFLAGS) -t
+# 自动
++D = $(patsubst %/,%,$(dir $+))
+# 默认
+COMPILE.r = $(FC) $(FFLAGS) $(RFLAGS) $(TARGET_ARCH) -c
+# 自动
++F = $(notdir $+)
+# 默认
+M2C = m2c
+# 默认
+MAKEFILES := 
+# 默认
+COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# 自动
+<F = $(notdir $<)
+# 默认
+CXX = g++
+# 默认
+COFLAGS = 
+# 默认
+COMPILE.C = $(COMPILE.cc)
+# 自动
+^F = $(notdir $^)
+# 环境
+SELINUX_ROLE_REQUESTED = 
+# 默认
+COMPILE.S = $(CC) $(ASFLAGS) $(CPPFLAGS) $(TARGET_MACH) -c
+# 默认
+LINK.F = $(FC) $(FFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 默认
+SUFFIXES := .out .a .ln .o .c .cc .C .cpp .p .f .F .m .r .y .l .ym .yl .s .S .mod .sym .def .h .info .dvi .tex .texinfo .texi .txinfo .w .ch .web .sh .elc .el
+# 环境
+HISTSIZE = 1000
+# 默认
+COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+# 默认
+COMPILE.s = $(AS) $(ASFLAGS) $(TARGET_MACH)
+# 默认
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# 默认
+.RECIPEPREFIX := 
+# 默认
+MAKEINFO = makeinfo
+# 默认
+OBJC = cc
+# 默认
+TEX = tex
+# 环境
+LANG = zh_CN.UTF-8
+# 环境
+TERM = xterm
+# 默认
+F77FLAGS = $(FFLAGS)
+# 默认
+LINK.f = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+# 变量的杂凑表状态:
+# 负载=122/1024=12%, 重新杂凑=0, 碰撞=19/173=11%
+
+# Pattern-specific 变量值
+
+# 没有 pattern-specific 变量的值。
+
+# 目录
+
+# SCCS：无法对其进行 stat 操作。
+# . (设备 64770，i-节点 693493)：9 文件， 28 不可能.
+# RCS：无法对其进行 stat 操作。
+
+# 9 文件， 28 不可能在 3 目录中。
+
+# 隐含规则。
+
+%.out:
+
+%.a:
+
+%.ln:
+
+%.o:
+
+%: %.o
+#  recipe to execute (内置)：
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.c:
+
+%: %.c
+#  recipe to execute (内置)：
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.ln: %.c
+#  recipe to execute (内置)：
+	$(LINT.c) -C$* $<
+
+%.o: %.c
+#  recipe to execute (内置)：
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+%.cc:
+
+%: %.cc
+#  recipe to execute (内置)：
+	$(LINK.cc) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.cc
+#  recipe to execute (内置)：
+	$(COMPILE.cc) $(OUTPUT_OPTION) $<
+
+%.C:
+
+%: %.C
+#  recipe to execute (内置)：
+	$(LINK.C) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.C
+#  recipe to execute (内置)：
+	$(COMPILE.C) $(OUTPUT_OPTION) $<
+
+%.cpp:
+
+%: %.cpp
+#  recipe to execute (内置)：
+	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.cpp
+#  recipe to execute (内置)：
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+%.p:
+
+%: %.p
+#  recipe to execute (内置)：
+	$(LINK.p) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.p
+#  recipe to execute (内置)：
+	$(COMPILE.p) $(OUTPUT_OPTION) $<
+
+%.f:
+
+%: %.f
+#  recipe to execute (内置)：
+	$(LINK.f) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.f
+#  recipe to execute (内置)：
+	$(COMPILE.f) $(OUTPUT_OPTION) $<
+
+%.F:
+
+%: %.F
+#  recipe to execute (内置)：
+	$(LINK.F) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.F
+#  recipe to execute (内置)：
+	$(COMPILE.F) $(OUTPUT_OPTION) $<
+
+%.f: %.F
+#  recipe to execute (内置)：
+	$(PREPROCESS.F) $(OUTPUT_OPTION) $<
+
+%.m:
+
+%: %.m
+#  recipe to execute (内置)：
+	$(LINK.m) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.m
+#  recipe to execute (内置)：
+	$(COMPILE.m) $(OUTPUT_OPTION) $<
+
+%.r:
+
+%: %.r
+#  recipe to execute (内置)：
+	$(LINK.r) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.r
+#  recipe to execute (内置)：
+	$(COMPILE.r) $(OUTPUT_OPTION) $<
+
+%.f: %.r
+#  recipe to execute (内置)：
+	$(PREPROCESS.r) $(OUTPUT_OPTION) $<
+
+%.y:
+
+%.ln: %.y
+#  recipe to execute (内置)：
+	$(YACC.y) $< 
+	 $(LINT.c) -C$* y.tab.c 
+	 $(RM) y.tab.c
+
+%.c: %.y
+#  recipe to execute (内置)：
+	$(YACC.y) $< 
+	 mv -f y.tab.c $@
+
+%.l:
+
+%.ln: %.l
+#  recipe to execute (内置)：
+	@$(RM) $*.c
+	 $(LEX.l) $< > $*.c
+	$(LINT.c) -i $*.c -o $@
+	 $(RM) $*.c
+
+%.c: %.l
+#  recipe to execute (内置)：
+	@$(RM) $@ 
+	 $(LEX.l) $< > $@
+
+%.r: %.l
+#  recipe to execute (内置)：
+	$(LEX.l) $< > $@ 
+	 mv -f lex.yy.r $@
+
+%.ym:
+
+%.m: %.ym
+#  recipe to execute (内置)：
+	$(YACC.m) $< 
+	 mv -f y.tab.c $@
+
+%.yl:
+
+%.s:
+
+%: %.s
+#  recipe to execute (内置)：
+	$(LINK.s) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.s
+#  recipe to execute (内置)：
+	$(COMPILE.s) -o $@ $<
+
+%.S:
+
+%: %.S
+#  recipe to execute (内置)：
+	$(LINK.S) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+%.o: %.S
+#  recipe to execute (内置)：
+	$(COMPILE.S) -o $@ $<
+
+%.s: %.S
+#  recipe to execute (内置)：
+	$(PREPROCESS.S) $< > $@
+
+%.mod:
+
+%: %.mod
+#  recipe to execute (内置)：
+	$(COMPILE.mod) -o $@ -e $@ $^
+
+%.o: %.mod
+#  recipe to execute (内置)：
+	$(COMPILE.mod) -o $@ $<
+
+%.sym:
+
+%.def:
+
+%.sym: %.def
+#  recipe to execute (内置)：
+	$(COMPILE.def) -o $@ $<
+
+%.h:
+
+%.info:
+
+%.dvi:
+
+%.tex:
+
+%.dvi: %.tex
+#  recipe to execute (内置)：
+	$(TEX) $<
+
+%.texinfo:
+
+%.info: %.texinfo
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.texinfo
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.texi:
+
+%.info: %.texi
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.texi
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.txinfo:
+
+%.info: %.txinfo
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+%.dvi: %.txinfo
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+%.w:
+
+%.c: %.w
+#  recipe to execute (内置)：
+	$(CTANGLE) $< - $@
+
+%.tex: %.w
+#  recipe to execute (内置)：
+	$(CWEAVE) $< - $@
+
+%.ch:
+
+%.web:
+
+%.p: %.web
+#  recipe to execute (内置)：
+	$(TANGLE) $<
+
+%.tex: %.web
+#  recipe to execute (内置)：
+	$(WEAVE) $<
+
+%.sh:
+
+%: %.sh
+#  recipe to execute (内置)：
+	cat $< >$@ 
+	 chmod a+x $@
+
+%.elc:
+
+%.el:
+
+(%): %
+#  recipe to execute (内置)：
+	$(AR) $(ARFLAGS) $@ $<
+
+%.out: %
+#  recipe to execute (内置)：
+	@rm -f $@ 
+	 cp $< $@
+
+%.c: %.w %.ch
+#  recipe to execute (内置)：
+	$(CTANGLE) $^ $@
+
+%.tex: %.w %.ch
+#  recipe to execute (内置)：
+	$(CWEAVE) $^ $@
+
+%:: %,v
+#  recipe to execute (内置)：
+	$(CHECKOUT,v)
+
+%:: RCS/%,v
+#  recipe to execute (内置)：
+	$(CHECKOUT,v)
+
+%:: RCS/%
+#  recipe to execute (内置)：
+	$(CHECKOUT,v)
+
+%:: s.%
+#  recipe to execute (内置)：
+	$(GET) $(GFLAGS) $(SCCS_OUTPUT_OPTION) $<
+
+%:: SCCS/s.%
+#  recipe to execute (内置)：
+	$(GET) $(GFLAGS) $(SCCS_OUTPUT_OPTION) $<
+
+# 92 条隐含规则，5 (5.4%) 终端。
+
+# 文件
+
+# 不是一个目标：
+.web.p:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(TANGLE) $<
+
+# 不是一个目标：
+.l.r:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LEX.l) $< > $@ 
+	 mv -f lex.yy.r $@
+
+# 不是一个目标：
+.dvi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.ym:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.f.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.f) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.l:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.m:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.m) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.ln:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.y:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.def.sym:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.def) -o $@ $<
+
+# 不是一个目标：
+.p.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.p) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.p:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.p) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.txinfo.dvi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# 不是一个目标：
+.a:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.yl:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.l.ln:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	@$(RM) $*.c
+	 $(LEX.l) $< > $*.c
+	$(LINT.c) -i $*.c -o $@
+	 $(RM) $*.c
+
+# 不是一个目标：
+.F.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.F) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.texi.info:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# 不是一个目标：
+.w.c:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(CTANGLE) $< - $@
+
+# 不是一个目标：
+.texi.dvi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# 不是一个目标：
+.ch:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.m.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.m) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.cc:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.cc) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.cc.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.cc) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.def:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.SUFFIXES: .out .a .ln .o .c .cc .C .cpp .p .f .F .m .r .y .l .ym .yl .s .S .mod .sym .def .h .info .dvi .tex .texinfo .texi .txinfo .w .ch .web .sh .elc .el
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.c.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+Makefile:
+#  对隐含规则的搜索已完成。
+#  最近更新 2017-10-14 09:55:10.578128757
+#  文件已经被更新。
+#  更新成功。
+
+# 不是一个目标：
+.r.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.r) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.r:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.r) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+test.o: test.c
+#  对隐含规则的搜索已完成。
+#  隐含/静态模式主干：“test”
+#  最近更新 2017-10-14 09:57:24.56442539
+#  文件已经被更新。
+#  更新成功。
+# 自动
+# @ := test.o
+# 自动
+# % := 
+# 自动
+# * := test
+# 自动
+# + := test.c
+# 自动
+# | := 
+# 自动
+# < := test.c
+# 自动
+# ^ := test.c
+# 自动
+# ? := test.c
+# 变量的杂凑表状态:
+# 负载=8/32=25%, 重新杂凑=0, 碰撞=2/19=11%
+#  recipe to execute (内置)：
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+test: test.o max.o min.o
+#  对隐含规则的搜索尚未完成。
+#  隐含/静态模式主干：“”
+#  最近更新 2017-10-14 09:57:24.632426555
+#  文件已经被更新。
+#  更新成功。
+# 自动
+# @ := test
+# 自动
+# % := 
+# 自动
+# * := 
+# 自动
+# + := test.o max.o min.o
+# 自动
+# | := 
+# 自动
+# < := test.o
+# 自动
+# ^ := test.o max.o min.o
+# 自动
+# ? := test.o max.o min.o
+# 变量的杂凑表状态:
+# 负载=8/32=25%, 重新杂凑=0, 碰撞=1/38=3%
+#  recipe to execute (从“Makefile”，行 2)：
+	gcc -o test test.o max.o min.o
+
+# 不是一个目标：
+.ym.m:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(YACC.m) $< 
+	 mv -f y.tab.c $@
+
+# 不是一个目标：
+.y.ln:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(YACC.y) $< 
+	 $(LINT.c) -C$* y.tab.c 
+	 $(RM) y.tab.c
+
+# 不是一个目标：
+.elc:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.l.c:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	@$(RM) $@ 
+	 $(LEX.l) $< > $@
+
+# 不是一个目标：
+.out:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.C:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.C) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.r.f:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(PREPROCESS.r) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.S:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.S) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.texinfo.info:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# 不是一个目标：
+.c:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.w.tex:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(CWEAVE) $< - $@
+
+# 不是一个目标：
+.c.ln:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINT.c) -C$* $<
+
+# 不是一个目标：
+.s.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.s) -o $@ $<
+
+# 不是一个目标：
+.s:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.s) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.texinfo.dvi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(TEXI2DVI) $(TEXI2DVI_FLAGS) $<
+
+# 不是一个目标：
+.el:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.lm.m:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	@$(RM) $@ 
+	 $(LEX.m) $< > $@
+
+# 不是一个目标：
+.y.c:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(YACC.y) $< 
+	 mv -f y.tab.c $@
+
+max.o: max.c
+#  对隐含规则的搜索已完成。
+#  隐含/静态模式主干：“max”
+#  最近更新 2017-10-14 09:57:24.589425818
+#  文件已经被更新。
+#  更新成功。
+# 自动
+# @ := max.o
+# 自动
+# % := 
+# 自动
+# * := max
+# 自动
+# + := max.c
+# 自动
+# | := 
+# 自动
+# < := max.c
+# 自动
+# ^ := max.c
+# 自动
+# ? := max.c
+# 变量的杂凑表状态:
+# 负载=8/32=25%, 重新杂凑=0, 碰撞=2/19=11%
+#  recipe to execute (内置)：
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.web.tex:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(WEAVE) $<
+
+# 不是一个目标：
+.texinfo:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.DEFAULT:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.h:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+min.o: min.c
+#  对隐含规则的搜索已完成。
+#  隐含/静态模式主干：“min”
+#  最近更新 2017-10-14 09:57:24.611426195
+#  文件已经被更新。
+#  更新成功。
+# 自动
+# @ := min.o
+# 自动
+# % := 
+# 自动
+# * := min
+# 自动
+# + := min.c
+# 自动
+# | := 
+# 自动
+# < := min.c
+# 自动
+# ^ := min.c
+# 自动
+# ? := min.c
+# 变量的杂凑表状态:
+# 负载=8/32=25%, 重新杂凑=0, 碰撞=2/19=11%
+#  recipe to execute (内置)：
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.tex.dvi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(TEX) $<
+
+# 不是一个目标：
+test.c:
+#  对隐含规则的搜索已完成。
+#  最近更新 2017-10-14 09:54:03.56798015
+#  文件已经被更新。
+#  更新成功。
+
+# 不是一个目标：
+.cpp.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.cpp:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+clean:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (从“Makefile”，行 7)：
+	rm *.o test
+
+# 不是一个目标：
+.C.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.C) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.texi:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.txinfo:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.tex:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.txinfo.info:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(MAKEINFO) $(MAKEINFO_FLAGS) $< -o $@
+
+# 不是一个目标：
+.sh:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	cat $< >$@ 
+	 chmod a+x $@
+
+# 不是一个目标：
+.S.s:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(PREPROCESS.S) $< > $@
+
+# 不是一个目标：
+.mod:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.mod) -o $@ -e $@ $^
+
+# 不是一个目标：
+.mod.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.mod) -o $@ $<
+
+# 不是一个目标：
+.F.f:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(PREPROCESS.F) $(OUTPUT_OPTION) $<
+
+# 不是一个目标：
+.w:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.S.o:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(COMPILE.S) -o $@ $<
+
+# 不是一个目标：
+max.c:
+#  对隐含规则的搜索已完成。
+#  最近更新 2017-10-14 09:54:03.566980133
+#  文件已经被更新。
+#  更新成功。
+
+# 不是一个目标：
+.F:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.F) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+min.c:
+#  对隐含规则的搜索已完成。
+#  最近更新 2017-10-14 09:54:03.56798015
+#  文件已经被更新。
+#  更新成功。
+
+# 不是一个目标：
+.web:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.sym:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 不是一个目标：
+.f:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+#  recipe to execute (内置)：
+	$(LINK.f) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+# 不是一个目标：
+.info:
+#  对隐含规则的搜索尚未完成。
+#  从不检查修改时间。
+#  文件尚未被更新。
+
+# 文件杂凑表状态:
+# 负载=81/1024=8%, 重新杂凑=0, 碰撞=435/1582=27%
+# VPATH 搜索路径
+
+# 没有“vpath”搜索路径。
+
+# 没有通用搜索路径(“VPATH”变量)。
+
+# # of strings in strcache: 0 / lookups = 550 / hits = 550
+# # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
+# strcache used: total = 0 (3217) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (4959) / max = 0 / min = 8176 / avg = 0
+
+# strcache hash-table stats:
+# 负载=321/8192=4%, 重新杂凑=0, 碰撞=188/550=34%
+# 在 Sat Oct 14 09:57:24 2017
+ 上完成 make 数据基础
