@@ -16,15 +16,81 @@ int main()
     char *parent_talk[] = {"Hello", "Can you tell me current time?","Oh MyGod, i have go.ByeBye",NULL};
     char *child_talk[] = {"Hi","No Problem.","GoodBye.",NULL};
 
+    int fd1[2];
+    int fd2[2];
 
+    int ret = pipe(fd1);
+    if(ret == -1)
+    {
+        sys_log(LOG_ERR,__FILE__,__LINE__,"Create pipe1 Fail.");
+        exit(1);
+    }
+    ret = pipe(fd2);
+    if(ret == -1)
+    {
+        sys_log(LOG_ERR,__FILE__,__LINE__,"Create pipe2 Fail.");
+        exit(1);
+    }
 
     pid_t pid = fork();
     if(pid == 0)
-    {}
+    {
+        int i = 0;
+        char buffer[256];
+        close(fd1[1]);
+        close(fd2[0]);
+        char *child = child_talk[i];
+        while(child != NULL)
+        {
+            read(fd1[0], buffer, 256);
+            printf("Parent:> %s\n", buffer);
+            if(i == 1)
+            {
+                time_t te;
+                time(&te);
+                memset(buffer, 0, 256);
+                sprintf(buffer, "%s %s",child, ctime(&te));
+                write(fd2[1], buffer, strlen(buffer)+1);
+            }
+            else
+            {
+                write(fd2[1], child, strlen(child)+1);
+            }
+            ++i;
+            child = child_talk[i];
+        }
+
+        close(fd1[0]);
+        close(fd2[1]);
+    }
     else if(pid > 0)
-    {}
+    {
+        int i = 0;
+        int buffer[256];
+        close(fd1[0]); //write
+        close(fd2[1]); //read
+
+        char *parent = parent_talk[i];
+        while(parent != NULL)
+        {
+            write(fd1[1], parent, strlen(parent)+1);
+            read(fd2[0], buffer, 256);
+            printf("Child:> %s\n",buffer);
+
+            ++i;
+            parent = parent_talk[i];
+        }
+
+        close(fd1[1]);
+        close(fd2[0]);
+
+        int status;
+        wait(&status);
+    }
     else
-    {}
+    {
+        perror("fork.");
+    }
 
     return 0;
 }
@@ -74,3 +140,4 @@ int main()
 
     return 0;
 }
+*/
