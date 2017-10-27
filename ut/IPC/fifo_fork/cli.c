@@ -8,6 +8,30 @@
 
 #include"utili.h"
 
+void write_msg(int fd)
+{
+    char buf[256];
+    while(1)
+    {
+        printf("Cli:>");
+        scanf("%s",buf);
+        if(!strcmp(buf,"quit"))
+        {
+            break;
+        }
+        write(fd, buf, strlen(buf)+1);
+    }
+}
+void read_msg(int fd)
+{
+    int buf[256];
+    while(1)
+    {
+        read(fd, buf, 256);
+        printf("Ser:>%s\n",buf);
+    }
+}
+
 int main()
 {
     int read_fd = open(write_fifo, O_RDONLY);
@@ -36,19 +60,28 @@ int main()
         exit(1);
     }
 
-    char send_buf[256];
-    char recv_buf[256];
-    while(1)
+    pid_t pid = fork();
+    if(pid == 0)
     {
-        read(read_fd, recv_buf, 256);
-        printf("Ser:>%s\n",recv_buf);
-        printf("Cli:>");
-        scanf("%s",send_buf);
-        write(write_fd, send_buf, strlen(send_buf)+1);
+        write_msg(write_fd);
+    }
+    else if(pid > 0)
+    {
+        pid = fork();
+        if(pid == 0)
+        {
+            read_msg(read_fd);
+        }
+        else if(pid > 0)
+        {
+            int status;
+            wait(&status);
+            close(write_fd);
+            close(read_fd);
+        }
     }
 
-    close(write_fd);
-    close(read_fd);
+
 
 
     return 0;
