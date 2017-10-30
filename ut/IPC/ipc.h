@@ -8,10 +8,12 @@
 
 #include<stdio.h>
 #include<unistd.h>
-#include<sys/ipc.h>
 #include<stdlib.h>
+#include<string.h>
+#include<sys/ipc.h>
 #include<sys/sem.h>
 #include<sys/shm.h>
+#include<sys/msg.h>
 
 union semun
 {
@@ -74,7 +76,17 @@ void* Shmat(int shmid, const void *shmaddr, int shmflg)
     return addr;
 }
 
-
+///////////////////////////////////////////////
+int Msgget(key_t key, int msgflg)
+{
+    int id = msgget(key, msgflg);
+    if(id == -1)
+    {
+        perror("msgget.");
+        exit(1);
+    }
+    return id;
+}
 
 
 
