@@ -15,6 +15,61 @@
 
 my_pthread_rwlock_t rwlock = MY_PTHREAD_RWLOCK_INITIALIZER;
 
+void clean_up(void *arg)
+{
+    printf("Clean up Code.\n");
+    pthread_rwlock_unlock(&rwlock);
+}
+
+void* thread_fun1(void *arg)
+{
+    my_pthread_rwlock_rdlock(&rwlock);
+    printf("This is thread 1.\n");
+    pthread_cleanup_push(clean_up, NULL);
+    //sleep(3);
+    //pthread_exit(NULL);
+    pthread_cleanup_pop(1);
+    my_pthread_rwlock_unlock(&rwlock);
+
+    //.................
+
+}
+
+void* thread_fun2(void *arg)
+{
+    my_pthread_rwlock_wrlock(&rwlock);
+    printf("This is thread 2.\n");
+    printf("thread 2 sleep....\n");
+    sleep(5);
+    printf("thread 2 wake up.\n");
+    my_pthread_rwlock_unlock(&rwlock);
+}
+
+void* thread_fun(void *arg)
+{
+    pthread_t tid = *(pthread_t*)arg;
+    pthread_cancel(tid);
+}
+
+int main()
+{
+    pthread_t tid1, tid2, tid;
+    //pthread_create(&tid2, NULL, thread_fun2, NULL);
+    //sleep(1);
+    pthread_create(&tid1, NULL, thread_fun1, NULL);
+    sleep(1);
+
+    //pthread_create(&tid, NULL, thread_fun, &tid1);
+
+    //pthread_join(tid, NULL);
+    pthread_join(tid1, NULL);
+    //pthread_join(tid2, NULL);
+    return 0;
+}
+
+
+
+/*
 #define N 5
 
 void* thread_fun(void *arg)

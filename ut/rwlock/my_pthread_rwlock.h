@@ -37,6 +37,13 @@ int my_pthread_rwlock_rdlock(my_pthread_rwlock_t *rw);
 int my_pthread_rwlock_wrlock(my_pthread_rwlock_t *rw);
 int my_pthread_rwlock_unlock(my_pthread_rwlock_t *rw);
 
+void clean_up(void *arg)
+{
+    my_pthread_rwlock_t *rw = (my_pthread_rwlock_t*)arg;
+    rw->rw_nwaitreaders--;
+    pthread_mutex_unlock(&rw->rw_mutex);
+}
+
 ///////////////////////////////////////////////////////////////
 int my_pthread_rwlock_rdlock(my_pthread_rwlock_t *rw)
 {
@@ -46,10 +53,13 @@ int my_pthread_rwlock_rdlock(my_pthread_rwlock_t *rw)
     if((result = pthread_mutex_lock(&rw->rw_mutex)) != 0)
         return result;
 
-    while(rw->rw_refcount<0 || rw->rw_nwaitwriters>0)
+    //while(rw->rw_refcount<0 || rw->rw_nwaitwriters>0)
+    while(rw->rw_refcount < 0)
     {
         rw->rw_nwaitreaders++;
+        pthread_cleanup_push(clean_up, rw);
         result = pthread_cond_wait(&rw->rw_condreaders, &rw->rw_mutex);
+        pthread_cleanup_pop(0);
         rw->rw_nwaitreaders--;
         if(result != 0)
             break;
@@ -68,7 +78,7 @@ int my_pthread_rwlock_wrlock(my_pthread_rwlock_t *rw)
     if((result = pthread_mutex_lock(&rw->rw_mutex)) != 0)
         return result;
 
-    while(rw->rw_refcount != 0)
+    while(rw->rw_refcount!=0 || rw->rw_nwaitreaders>0)
     {
         rw->rw_nwaitwriters++;
         result = pthread_cond_wait(&rw->rw_condwriters, &rw->rw_mutex);
@@ -97,16 +107,16 @@ int my_pthread_rwlock_unlock(my_pthread_rwlock_t *rw)
     else
         printf("unlock rwlock error: rw_refcount = %d\n",rw->rw_refcount);
 
-    if(rw->rw_nwaitwriters > 0)
+    if(rw->rw_nwaitreaders > 0)
+    {
+        result = pthread_cond_broadcast(&rw->rw_condreaders);
+    }
+    else if(rw->rw_nwaitwriters > 0)
     {
         if(rw->rw_refcount == 0)
         {
             result = pthread_cond_signal(&rw->rw_condwriters);
         }
-    }
-    else if(rw->rw_nwaitreaders > 0)
-    {
-        result = pthread_cond_broadcast(&rw->rw_condreaders);
     }
 
     pthread_mutex_unlock(&rw->rw_mutex);
