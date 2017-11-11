@@ -42,19 +42,38 @@ void destroy_pc(pc_st *p)
     pthread_mutex_destroy(&p->mutex);
     pthread_cond_destroy(&p->notfull);
     pthread_cond_destroy(&p->notempty);
-    p->write-pos = 0;
+    p->write_pos = 0;
     p->read_pos = 0;
 }
 /////////////////////////////////////////////////
 void put(pc_st *p, int val)
 {
+    pthread_mutex_lock(&p->mutex);
+    if((p->write_pos+1)%MAX_BUFFER_SIZE == p->read_pos)
+    {
+        pthread_cond_wait(&p->notfull, &p->mutex);
+    }
     p->buffer[p->write_pos] = val;
-    p->write_pos++;
+    p->write_pos = (p->write_pos+1) % MAX_BUFFER_SIZE;
+
+    pthread_cond_signal(&p->notempty);
+
+    pthread_mutex_unlock(&p->mutex);
 }
 int  get(pc_st *p)
 {
-    int val = p->buffer[p->read_pos];
-    p->read_pos++;
+    int val;
+    pthread_mutex_lock(&p->mutex);
+    if(p->read_pos == p->write_pos)
+    {
+        pthread_cond_wait(&p->notempty, &p->mutex);
+    }
+    val = p->buffer[p->read_pos];
+    p->read_pos = (p->read_pos+1) % MAX_BUFFER_SIZE;
+
+    pthread_cond_signal(&p->notfull);
+
+    pthread_mutex_unlock(&p->mutex);
     return val;
 }
 /////////////////////////////////////////////////
@@ -77,6 +96,7 @@ void* consumer(void *arg)
         if(value == OVER)
             break;
         printf("value = %d\n",value);
+        sleep(1);
     }
 }
 
