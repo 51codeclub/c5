@@ -5,37 +5,17 @@
 *    > Created Time: 2017年11月11日 星期六 10时22分00秒
 **********************************************************/
 
-#include"utili.h"
+#include"../socket.h"
 
-int main()
+// ./ser 192.168.1.50 8080
+
+int main(int argc, char *argv[])
 {
-    int sockSer = socket(AF_INET, SOCK_STREAM, 0);
+    int sockSer = start_up(argv[1], atoi(argv[2]), TCP);
     if(sockSer == -1)
     {
-        perror("socket");
-        exit(1);
+        return -1;
     }
-
-    struct sockaddr_in addrSer, addrCli;
-    addrSer.sin_family = AF_INET;
-    addrSer.sin_port = htons(SERVER_PORT);
-    addrSer.sin_addr.s_addr = inet_addr(SERVER_IP);
-
-    socklen_t len = sizeof(struct sockaddr);
-    int ret = bind(sockSer, (struct sockaddr*)&addrSer, len);
-    if(ret == -1)
-    {
-        perror("bind");
-        exit(1);
-    }
-
-    ret = listen(sockSer, LISTEN_QUEUE_SIZE);
-    if(ret == -1)
-    {
-        perror("listen");
-        exit(1);
-    }
-
     int sockConn = accept(sockSer, (struct sockaddr*)&addrCli, &len);
     if(sockConn == -1)
     {
