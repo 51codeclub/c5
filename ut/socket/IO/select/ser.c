@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     char buffer[128];
 
     fd_set set;
+    FD_ZERO(&set);
     int maxfd = sockSer;
     int i;
     while(1)
@@ -48,7 +49,10 @@ int main(int argc, char *argv[])
         }
 
         printf("Server Wait.......\n");
-        int ret = select(maxfd+1, &set, NULL, NULL, NULL);
+        struct timeval tv;
+        tv.tv_sec = 5;
+        tv.tv_usec = 0;
+        int ret = select(maxfd+1, &set, NULL, NULL, &tv);
         if(ret == -1)
         {
             perror("select.");
