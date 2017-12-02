@@ -5,7 +5,15 @@
 *    > Created Time: 2017年11月11日 星期六 10时22分00秒
 **********************************************************/
 
+#include<stdio.h>
+#include<unistd.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+#include<stdlib.h>
+#include<string.h>
 #include"../socket.h"
+
+#define BUFFER_SIZE 128
 
 // ./ser 192.168.1.50 8080
 
@@ -16,6 +24,11 @@ int main(int argc, char *argv[])
     {
         return -1;
     }
+
+    printf("Server Wait Client Connect.....\n ");
+
+    struct sockaddr_in addrCli;
+    socklen_t len = sizeof(struct sockaddr);
     int sockConn = accept(sockSer, (struct sockaddr*)&addrCli, &len);
     if(sockConn == -1)
     {
@@ -29,14 +42,14 @@ int main(int argc, char *argv[])
 
     char sendbuf[BUFFER_SIZE];
     char recvbuf[BUFFER_SIZE];
-    while(1)
-    {
-        printf("Ser:>");
-        scanf("%s", sendbuf);
-        send(sockConn, sendbuf, strlen(sendbuf)+1, 0);
+    //while(1)
+    //{
+        //printf("Ser:>");
+        //scanf("%s", sendbuf);
+        //send(sockConn, sendbuf, strlen(sendbuf)+1, 0);
         recv(sockConn, recvbuf, BUFFER_SIZE, 0);
         printf("Cli:>%s\n",recvbuf);
-    }
+    //}
 
     close(sockSer);
 
